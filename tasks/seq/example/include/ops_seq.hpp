@@ -5,7 +5,7 @@
 
 #include "core/task/include/task.hpp"
 
-namespace nesterov_a_test_task_seq {
+namespace chernova_n_int_radix_sort_batcher_seq {
 
 class TestTaskSequential : public ppc::core::Task {
  public:
@@ -16,8 +16,14 @@ class TestTaskSequential : public ppc::core::Task {
   bool PostProcessingImpl() override;
 
  private:
-  std::vector<int> input_, output_;
-  int rc_size_{};
+  std::vector<int> input_;
+  unsigned int input_size, output_size;
+  const int base_size = 2;
+
+  void MergeSortBatcher(std::vector<int>& arr, std::vector<int>& buf, size_t base_size);
+  void ComparePairs(std::vector<int>& arr);
+  void Merge(std::vector<int>& arr, std::vector<int>& buf, size_t left_len, size_t right_len, int odd);
+  void RadixSort(std::vector<int>& data);
 };
 
-}  // namespace nesterov_a_test_task_seq
+}  // namespace chernova_n_int_radix_sort_batcher_seq
