@@ -121,14 +121,10 @@ void chernova_n_int_radix_sort_batcher_omp::TestTaskOpenMP::MergeSortBatcher(std
   std::vector<int> right(arr.begin() + mid, arr.end());
 
 #pragma omp task shared(left)
-  {
-    MergeSortBatcher(left, part_size);
-  }
+  { MergeSortBatcher(left, part_size); }
 
 #pragma omp task shared(right)
-  {
-    MergeSortBatcher(right, part_size);
-  }
+  { MergeSortBatcher(right, part_size); }
 
 #pragma omp taskwait
 
